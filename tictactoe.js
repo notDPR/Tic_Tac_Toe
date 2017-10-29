@@ -21,7 +21,6 @@ function gameCode(){
 	var turn = "pehla" ; 
 	var matrix = [[-3,-3,-3],[-3,-3,-3],[-3,-3,-3]];
 
-
 	$("table tr").on("click",".check",function(event){
 	var pehla = $(this).find(".pehla");
 	var dusra = $(this).find(".dusra");
@@ -161,7 +160,6 @@ function playerWon(player){
 		}
 	}
 }
-
 
 // Winner check
 function checkWin(mat){

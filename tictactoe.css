@@ -1,0 +1,80 @@
+body #crd{
+	margin-top: 5%;
+	max-width: 95%;
+	width: 380px;
+}
+
+tr td{
+	text-align: center;
+	border: 1px solid #ffebee;
+	width: 90px ;
+	height: 90px ;
+	padding: 0 ;
+}
+
+html,body{
+/*	background: #eacda3;  
+	background: -webkit-linear-gradient(to right, #d6ae7b, #eacda3); 
+	background: linear-gradient(to right, #d6ae7b, #eacda3); */
+
+
+	background: #70e1f5; 
+	background: -webkit-linear-gradient(to right, #ffd194, #70e1f5);  
+	background: linear-gradient(to right, #ffd194, #70e1f5); 
+
+	font-family: 'Yantramanav', sans-serif ;
+}
+.card-title #naam{
+	width: 220px;
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.card-title .p1,.p2 {
+	display: inline-block;
+	padding-top: 7px ;
+}
+.card .card-content .card-title {
+	margin-bottom : 18px;
+}
+.card .card-action {
+	border-top: 0 ;
+}
+
+.card .card-content .card-title i {
+    line-height: 42px;
+}
+
+.btn-large i {
+    font-size: 3.4rem;
+}
+
+.dark { 
+	color: #e65100; 
+}
+
+.check{}
+
+.card .card-action{
+	padding-top: 0;
+}
+td i{
+	width:100%;
+	height: 100% ;
+}
+
+.card .card-content .card-title{
+	line-height: 56px;
+}
+
+.card-action #newgame{
+	font-size: x-large;
+}
+
+.card .card-title #naam{
+	font-size: xx-large;
+}
+
+.winShow{
+	background: #26a69a ;
+}

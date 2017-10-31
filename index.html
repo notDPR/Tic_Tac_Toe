@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+	<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>TicTacToe</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -11,21 +12,27 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+	<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
 	<script type="text/javascript" src="tictactoe.js"></script>
 </head>
 <body>
 	<div class="row valign-wrapper">
 	<div class="container">
-		<div class="" id="crd">
+		<div id="crd">
 	<div class="col s12 m8 offset-m2 l6 offset-l3">
           <div class="card red accent-1 z-depth-5">
             <div class="card-content white-text">
               <span class="card-title center-align">
-              	<a class="p1 left btn btn-floating btn-large waves-effect pulse tooltipped" data-position="left" data-tooltip="खिलाड़ी 1" data-delay="50"><i class="center-align medium material-icons">radio_button_unchecked</i></a>
-              	<span class="center-align" id="naam">टिक टैक् टो</span>
-              	<a class="p2 right btn btn-floating btn-large waves-effect tooltipped" data-position="right" data-tooltip="खिलाड़ी 2" data-delay="50"><i class="center-align material-icons">close</i></a>
+              	<a data-aos="zoom-out-left" class="p1 left btn btn-floating btn-large waves-effect tooltipped" data-position="left" data-tooltip="खिलाड़ी 1" data-delay="50">
+              		<i id="pl1" class="center-align medium material-icons">radio_button_unchecked</i>
+              	</a>
+              	<span class="center-align" id="naam" data-aos="zoom-out-down">टिक टैक् टो</span>
+              	<a data-aos="zoom-out-right" class="p2 right btn btn-floating btn-large waves-effect tooltipped" data-position="right" data-tooltip="खिलाड़ी 2" data-delay="50">
+              		<i id="pl2" class="center-align material-icons">close</i>
+              	</a>
               </span>
-              <table class="hoverable">
+              <table class="hoverable z-depth-3" data-aos="zoom-in">
               	<tr id="row1">
               		<td id="00">
               			<i class="pehla material-icons md36 waves-effect">radio_button_unchecked</i>
@@ -80,7 +87,7 @@
               </table>
             </div>
             <div class="card-action center-align">
- 				<button id= "newgame" class="waves-effect waves-purple btn" href="#">नया खेल</button>
+ 				<button data-aos="zoom-out-up" id= "newgame" class="waves-effect waves-purple btn" href="#">नया खेल</button>
             </div>
           </div>
       </div>

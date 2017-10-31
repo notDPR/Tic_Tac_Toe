@@ -2,7 +2,6 @@ body,html, .row {
 	height: 100% ;
 }
 
-
 tr td{
 	text-align: center;
 	border: 1px solid #ffebee;
@@ -45,7 +44,7 @@ html,body{
 }
 
 .dark { 
-	color: #e65100; 
+	color: #e65100 !important; 
 }
 
 .check{}

@@ -1,28 +1,30 @@
 $(document).ready(function(){
-	$('td').addClass("hoverable");
-	$('td i').addClass("large");
-	$('table tr td').addClass("check");
-
-	$(".material-icons").filter(".pehla,.dusra").hide();
-	 // $('.material-icons').addClass("waves-effect");
+	AOS.init();
+	FastClick.attach(document.body);
 	gameCode();
 
 });
 
-$('#crd').on('click','button,a',function(event){
+$(document).on('click','button,a',function(event){
 	event.preventDefault();
 });
 
 // GAME CODE
 function gameCode(){
 
-	Materialize.toast("'O' : की बारी",2000);
-	
+	$('td').addClass("hoverable");
+	$('td i').addClass("large");
+	$(".card-title .p1,.p2").addClass("pulse");
+	Materialize.toast("'नया खेल' बटन दबाएं") ;
+	$(".material-icons").filter(".pehla,.dusra").hide();
+	 // $('.material-icons').addClass("waves-effect");
+
 	var turn = "pehla" ; 
 	var matrix = [[-3,-3,-3],[-3,-3,-3],[-3,-3,-3]];
 
-
+	// CLICK FUNCTION
 	$("table tr").on("click",".check",function(event){
+	$(this).removeClass("check");
 	var pehla = $(this).find(".pehla");
 	var dusra = $(this).find(".dusra");
 	var start = $(this).find(".start");
@@ -34,14 +36,14 @@ function gameCode(){
 		if(turn=="pehla"){
 			start.fadeOut("fast");	
 			pehla.delay(200).fadeIn("fast");
-			pehla.delay(100).addClass("dark");
+			pehla.addClass("dark");
 			matrix[td_id.charAt(0)][td_id.charAt(1)] = 0 ;
 			turn="dusra";
 		}
 		else{
 			start.fadeOut("fast");
 			dusra.delay(200).fadeIn("fast");
-			dusra.delay(100).addClass("dark");
+			dusra.addClass("dark");
 			matrix[td_id.charAt(0)][td_id.charAt(1)] = 1 ;
 			turn = "pehla";	
 		}
@@ -50,7 +52,6 @@ function gameCode(){
 		console.log("ERROR : '.start' is not disaplyed");
 	}
 	$(".card-title .p1,.p2").toggleClass("pulse");
-	$(this).removeClass("check");
 	$(this).addClass("z-depth-4");
 
 	// WINNER CHECK
@@ -74,17 +75,19 @@ function gameCode(){
 	// NEW GAME button
 	$(".card-action").on("click","#newgame",function(event){
 		var tds = $("table tr td");
-		tds.find(".pehla,.dusra").fadeOut("fast");
-		tds.find(".start").delay("200").fadeIn("fast");
 		tds.addClass("check");
+		$(".card-title i").removeClass("dark");
+		$(".card-title #naam").removeClass("dark");
+		tds.find(".pehla:visible,.dusra:visible").fadeOut("fast");
+		tds.find(".start:hidden").delay("200").fadeIn("fast");
+		tds.removeClass("winShow" ,600) ;
 		tds.removeClass("z-depth-4");
-		tds.removeClass("winShow" , 500) ;
 		Materialize.Toast.removeAll();
 
-		turn = "pehla" ;
 		$(".card-title .p1,.p2").removeClass("pulse");
 		$(".card-title .p1").addClass("pulse");
 		Materialize.toast("'O' : की बारी",2000);
+		turn = "pehla" ;
 
 		// RESETTING THE MATRIX
 		matrix = matrixReset(matrix);
@@ -119,13 +122,17 @@ function playerWon(player){
 	$("table tr td").removeClass("check") ;
 	$(".card-title .p1,.p2").removeClass("pulse");
 	Materialize.Toast.removeAll();
+	$(".card-title #naam").addClass("dark",500);
 	if(player.winner==0){
 		$(".card-title .p1").addClass("pulse") ;
 		Materialize.toast("'O' खेल जीत गया");
+		$(".card .card-content .card-title i").first().addClass("dark",500);
+		
 	}
 	else{
 		$(".card-title .p2").addClass("pulse");
 		Materialize.toast("'X' खेल जीत गया");
+		$(".card .card-content .card-title i").last().addClass("dark",500);
 	}
 
 	// illuminating the winner 'tds'

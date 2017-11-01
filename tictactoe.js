@@ -1,12 +1,12 @@
+$(document).on('click','body',function(event){
+	event.preventDefault();
+});
+
+
 $(document).ready(function(){
 	AOS.init();
 	FastClick.attach(document.body);
 	gameCode();
-
-});
-
-$(document).on('click','button,a',function(event){
-	event.preventDefault();
 });
 
 // GAME CODE
@@ -63,10 +63,12 @@ function gameCode(){
 	}
 	else{  
 		if(noWinnerGameCompleteCheck(matrix)){	// No Winner (Game complete)
+			Materialize.Toast.removeAll();
 			Materialize.toast("कोई नहीं जीता");
 			$(".card-title .p1,.p2").addClass("pulse");
 		}
 		else{	// No Winner (Game running)
+			Materialize.Toast.removeAll();
 			if(turn=="pehla") Materialize.toast("'O' : की बारी",1000);
 			else if(turn=="dusra") Materialize.toast("'X' : की बारी",1000);
 		}

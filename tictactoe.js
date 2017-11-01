@@ -3,6 +3,7 @@ $(document).on('click','button',function(event){
 	event.preventDefault();
 });
 
+
 $(document).ready(function(){
 	AOS.init();
 	FastClick.attach(document.body);
@@ -11,11 +12,13 @@ $(document).ready(function(){
 	ttds.css("width",ttds.css("width"));
 	ttds.css("height",ttds.css("height"));
 
-	var crd = $("#crd");
-	crd.css("width",crd);
+	 var crd = $("#crd");
+	crd.css("width",crd.css("width"));
+	// crd.css("height",crd.css("height"));
 
 	gameCode();
 });
+
 
 // GAME CODE
 function gameCode(){
@@ -23,6 +26,7 @@ function gameCode(){
 	$('td').addClass("hoverable");
 	$('td i').addClass("large");
 	$(".card-title .p1,.p2").addClass("pulse");
+	// $(".card-title i").addClass("playerHighlight",500);
 	Materialize.toast("'नया खेल' बटन दबाएं") ;
 	$(".material-icons").filter(".pehla,.dusra").hide();
 	 // $('.material-icons').addClass("waves-effect");
@@ -42,15 +46,19 @@ function gameCode(){
 	
 	if(start.css("display") != "none"){
 		if(turn=="pehla"){
+			
 			start.fadeOut("fast");	
 			pehla.delay(200).fadeIn("fast");
+
 			pehla.addClass("dark");
 			matrix[td_id.charAt(0)][td_id.charAt(1)] = 0 ;
 			turn="dusra";
 		}
 		else{
+
 			start.fadeOut("fast");
 			dusra.delay(200).fadeIn("fast");
+
 			dusra.addClass("dark");
 			matrix[td_id.charAt(0)][td_id.charAt(1)] = 1 ;
 			turn = "pehla";	
@@ -59,14 +67,13 @@ function gameCode(){
 	else{
 		console.log("ERROR : '.start' is not disaplyed");
 	}
-	$(".card-title .p1,.p2").toggleClass("pulse");
+
 	$(this).addClass("z-depth-4");
 
 	// WINNER CHECK
 	var gameWin = checkWin(matrix);  // returns an object
-	// console.log(gameWin);
 
-	if(gameWin.winner==0 || gameWin.winner==1){ // Someone won the game
+	if( (gameWin.winner==0) || (gameWin.winner==1) ) { // Someone won the game
 		playerWon(gameWin);
 	}
 	else{  
@@ -74,29 +81,40 @@ function gameCode(){
 			Materialize.Toast.removeAll();
 			Materialize.toast("कोई नहीं जीता");
 			$(".card-title .p1,.p2").addClass("pulse");
+			$(".card-title i").addClass("playerHighlight",500);
 		}
 		else{	// No Winner (Game running)
 			Materialize.Toast.removeAll();
 			if(turn=="pehla") Materialize.toast("'O' : की बारी",1000);
 			else if(turn=="dusra") Materialize.toast("'X' : की बारी",1000);
+
+			$(".card-title .p1,.p2").toggleClass("pulse");
+			$(".card-title i").toggleClass("playerHighlight",150);
 		}
 	}
 });
+
 
 	// NEW GAME button
 	$(".card-action").on("click","#newgame",function(event){
 		var tds = $("table tr td");
 		tds.addClass("check");
-		$(".card-title i").removeClass("dark");
 		$(".card-title #naam").removeClass("dark");
+
 		tds.find(".pehla:visible,.dusra:visible").fadeOut("fast");
 		tds.find(".start:hidden").delay("200").fadeIn("fast");
+
 		tds.removeClass("winShow" ,600) ;
 		tds.removeClass("z-depth-4");
 		Materialize.Toast.removeAll();
 
 		$(".card-title .p1,.p2").removeClass("pulse");
+		$(".card-title i").removeClass("dark");
+		$(".card-title i").removeClass("playerHighlight");
+
 		$(".card-title .p1").addClass("pulse");
+		$(".card-title i").first().addClass("playerHighlight",500);
+
 		Materialize.toast("'O' : की बारी",2000);
 		turn = "pehla" ;
 
@@ -104,6 +122,7 @@ function gameCode(){
 		matrix = matrixReset(matrix);
 	});
 }
+
 
 // No Winner (Game Complete)
 function noWinnerGameCompleteCheck(matrx){
@@ -136,15 +155,19 @@ function playerWon(player){
 	$(".card-title #naam").addClass("dark",500);
 	if(player.winner==0){
 		$(".card-title .p1").addClass("pulse") ;
+		$(".card-title i").first().addClass("dark",500) ;
 		Materialize.toast("'O' खेल जीत गया");
+		$(".card-title i").removeClass("playerHighlight");
 		$(".card .card-content .card-title i").first().addClass("dark",500);
-		
 	}
 	else{
 		$(".card-title .p2").addClass("pulse");
+		$(".card-title i").last().addClass("dark",500);
 		Materialize.toast("'X' खेल जीत गया");
+		$(".card-title i").removeClass("playerHighlight");
 		$(".card .card-content .card-title i").last().addClass("dark",500);
 	}
+
 
 	// illuminating the winner 'tds'
 	if(player.row != undefined){

@@ -2,7 +2,6 @@ $(document).on('click','body',function(event){
 	event.preventDefault();
 });
 
-
 $(document).ready(function(){
 	AOS.init();
 	FastClick.attach(document.body);
@@ -74,6 +73,7 @@ function gameCode(){
 		}
 	}
 });
+
 	// NEW GAME button
 	$(".card-action").on("click","#newgame",function(event){
 		var tds = $("table tr td");
@@ -212,3 +212,4 @@ function diagonal(mat){
 			return {winner : mat[1][1] , diag : "bottom" };
 		else return {winner : -3} ;
 	}
+}

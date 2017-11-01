@@ -212,4 +212,3 @@ function diagonal(mat){
 			return {winner : mat[1][1] , diag : "bottom" };
 		else return {winner : -3} ;
 	}
-}

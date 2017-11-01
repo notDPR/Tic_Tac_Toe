@@ -1,10 +1,19 @@
-$(document).on('click','body',function(event){
+$(document).on('click','button',function(event){
+	event.stopPropagation();
 	event.preventDefault();
 });
 
 $(document).ready(function(){
 	AOS.init();
 	FastClick.attach(document.body);
+
+	var ttds = $("table tr td");
+	ttds.css("width",ttds.css("width"));
+	ttds.css("height",ttds.css("height"));
+
+	var crd = $("#crd");
+	crd.css("width",crd);
+
 	gameCode();
 });
 
